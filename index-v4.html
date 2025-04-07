@@ -30,13 +30,10 @@
     <link rel="stylesheet" href="styles-v4.css" />
   </head>
   <body>
-    <!-- Custom cursor element -->
-    <div class="cursor"></div>
-
     <header class="hero">
+      <svg id="hero-mouse"></svg>
       <div class="hero-bg">
         <div class="geometric-overlay"></div>
-        <svg id="hero-mouse"></svg>
       </div>
 
       <nav>
@@ -54,7 +51,7 @@
         <p class="subtitle">
           Expertly designed websites, mobile apps, and AI-powered solutions to elevate your business.
         </p>
-        <a href="#services" class="hero-button">Explore Our Services</a>
+        <a href="#services" class="hero-button" id="explore-services">Explore Our Services</a>
       </div>
     </header>
 
@@ -205,10 +202,10 @@
               <a href="https://www.linkedin.com/in/shalomr" class="social-link" target="_blank" aria-label="LinkedIn">
                 <i class="fab fa-linkedin-in"></i>
               </a>
-              <a href="https://twitter.com" class="social-link" target="_blank" aria-label="Twitter">
+              <!-- <a href="https://twitter.com" class="social-link" target="_blank" aria-label="Twitter">
                 <i class="fab fa-twitter"></i>
-              </a>
-              <a href="https://github.com" class="social-link" target="_blank" aria-label="GitHub">
+              </a> -->
+              <a href="https://shalomthegreat.github.com" class="social-link" target="_blank" aria-label="GitHub">
                 <i class="fab fa-github"></i>
               </a>
             </div>
@@ -246,54 +243,24 @@
         const hero = document.querySelector(".hero");
         const geometricOverlay = document.querySelector(".geometric-overlay");
 
-        // Mouse move effect for geometric overlay
+        // Mouse move effect for geometric overlay with whole pixel values
         hero.addEventListener("mousemove", (e) => {
-          const x = e.clientX / window.innerWidth;
-          const y = e.clientY / window.innerHeight;
+          const x = Math.round((e.clientX / window.innerWidth) * 20);
+          const y = Math.round((e.clientY / window.innerHeight) * 20);
 
-          geometricOverlay.style.transform = `translate(${x * 15}px, ${y * 15}px)`;
-        });
-
-        // Simple cursor effect - only in hero section
-        const cursor = document.querySelector(".cursor");
-        const heroMouse = document.querySelector("#hero-mouse");
-        
-        // Update cursor position on mouse move
-        document.addEventListener("mousemove", (e) => {
-          cursor.style.left = e.clientX + 'px';
-          cursor.style.top = e.clientY + 'px';
-        });
-        
-        // Show/hide cursor only in hero section
-        hero.addEventListener("mouseenter", () => {
-          cursor.style.display = "block";
-          if (heroMouse) heroMouse.style.display = "block";
+          geometricOverlay.style.transform = `translate(${x}px, ${y}px)`;
         });
 
-        hero.addEventListener("mouseleave", () => {
-          cursor.style.display = "none";
-          if (heroMouse) heroMouse.style.display = "none";
-        });
-        
-        // Initially hide the hero mouse
-        if (heroMouse) heroMouse.style.display = "none";
-        
-        // Animate service cards when they come into view
-        const serviceCards = document.querySelectorAll('.service-card');
+        // Animate service cards when they come into view using CSS classes
+        const serviceCards = document.querySelectorAll(".service-card");
         const cardObserver = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                // Apply animation with proper delay based on card index
-                const card = entry.target;
-                const index = Array.from(serviceCards).indexOf(card);
-                const delay = 0.1 * (index + 1);
-                
-                // Apply the animation directly with JavaScript
-                card.style.animation = `fadeInUp 0.6s ease-out ${delay}s forwards`;
-                
-                // Unobserve after animation is applied
-                cardObserver.unobserve(card);
+                // Add visible class to trigger CSS animations
+                entry.target.classList.add("visible");
+                // Unobserve after adding class
+                cardObserver.unobserve(entry.target);
               }
             });
           },
@@ -303,7 +270,7 @@
         serviceCards.forEach((card) => {
           cardObserver.observe(card);
         });
-        
+
         // Optimize performance by using IntersectionObserver for sections
         const sections = document.querySelectorAll("section");
 
@@ -312,6 +279,8 @@
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
+                // Unobserve after adding class to improve performance
+                sectionObserver.unobserve(entry.target);
               }
             });
           },
