@@ -4,19 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Digital Landscapes - Navigate the Digital World with Confidence</title>
-    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Preload critical fonts for better performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700&display=swap"
+      as="style" />
+
+    <!-- Load fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Nunito:wght@300;400;500;700&display=swap"
       rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.dots.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <!-- Load only the necessary Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
+
+    <!-- Mouse trail effect script -->
+    <script src="mouse-draw.js"></script>
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="wave-animation"></div>
     <header class="hero">
+      <svg id="hero-mouse"></svg>
+      <div class="hero-bg">
+        <div class="geometric-overlay"></div>
+      </div>
+
       <nav>
         <div class="logo">Digital Landscapes</div>
         <div class="nav-links">
@@ -25,205 +44,251 @@
           <a href="#contact">Contact</a>
         </div>
       </nav>
+
       <div class="hero-content">
         <h1>DIGITAL LANDSCAPES</h1>
         <p class="tagline">Navigate the Digital World with Confidence.</p>
         <p class="subtitle">
           Expertly designed websites, mobile apps, and AI-powered solutions to elevate your business.
         </p>
+        <a href="#services" class="hero-button" id="explore-services">Explore Our Services</a>
       </div>
     </header>
 
     <main>
-      <section class="vision">
-        <h2>TRANSFORM YOUR VISION INTO REALITY</h2>
-        <p>
-          At Digital Landscapes, we specialize in building custom websites, mobile apps, and AI-driven solutions
-          tailored to your unique business needs. With years of experience in enterprise website development and app
-          creation, we help startups, rebrands, and growing businesses stand out in the digital world.
-        </p>
-      </section>
+      <section id="services" class="vision">
+        <div class="container">
+          <div class="vision-content">
+            <h2>Transform Your Vision Into Reality</h2>
+            <p>
+              At <span class="highlight">Digital Landscapes</span>, we engineer cutting-edge digital solutions that push
+              boundaries. Our tech-forward approach combines innovative design with powerful functionality to create
+              experiences that captivate users and drive business growth.
+            </p>
+          </div>
 
-      <section id="services" class="services">
-        <h2>WHAT WE OFFER</h2>
-        <div class="services-grid">
-          <div class="service-card">
-            <h3>✅ Custom Website Development</h3>
-            <p>Scalable, high-performance websites built for growth.</p>
-          </div>
-          <div class="service-card">
-            <h3>✅ Mobile App Development</h3>
-            <p>Engaging and intuitive apps designed for success.</p>
-          </div>
-          <div class="service-card">
-            <h3>✅ AI-Powered Solutions</h3>
-            <p>Smarter tools and automation to enhance your business.</p>
-          </div>
-          <div class="service-card">
-            <h3>✅ Consultation & Strategy</h3>
-            <p>Personalized guidance to refine your digital presence.</p>
+          <h3>What We Offer</h3>
+
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-icon"><i class="fas fa-code"></i></div>
+              <h3>Custom Website Development</h3>
+              <p>
+                Next-gen, high-performance websites with cutting-edge tech stacks. Built for speed, scalability, and
+                conversion.
+              </p>
+              <div class="tech-tags">
+                <span>React</span>
+                <span>Vue</span>
+                <span>Node</span>
+              </div>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+              <h3>Mobile App Development</h3>
+              <p>Native and cross-platform apps engineered for seamless user experiences across all devices.</p>
+              <div class="tech-tags">
+                <span>Swift</span>
+                <span>Flutter</span>
+                <span>React Native</span>
+              </div>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon"><i class="fas fa-brain"></i></div>
+              <h3>AI-Powered Solutions</h3>
+              <p>
+                Leverage machine learning and AI to automate workflows, gain insights, and create intelligent systems.
+              </p>
+              <div class="tech-tags">
+                <span>TensorFlow</span>
+                <span>PyTorch</span>
+                <span>GPT</span>
+              </div>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon"><i class="fas fa-clipboard"></i></div>
+              <h3>Consultation & Strategy</h3>
+              <p>Data-driven strategies to optimize your digital ecosystem and maximize ROI.</p>
+              <div class="tech-tags">
+                <span>Analytics</span>
+                <span>UX Research</span>
+                <span>SEO</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="cta">
-        <h2>EVERY JOURNEY BEGINS WITH THE FIRST STEP</h2>
-        <p>
-          Your first step to success starts with an $80 consultation, where we discuss your goals, challenges, and the
-          best path forward. Let's bring your vision to life!
-        </p>
-        <a href="#contact" class="cta-button">📩 Schedule Your Consultation Today</a>
+        <div class="container">
+          <h2>Launch Your Digital Transformation</h2>
+          <p>
+            Ready to elevate your digital presence? Our streamlined process makes it easy to get started. From concept
+            to launch, we'll guide you through every step of the journey.
+          </p>
+
+          <div class="cta-timeline">
+            <div class="timeline-item">
+              <span class="timeline-number">01</span>
+              <span class="timeline-text">Discovery</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-number">02</span>
+              <span class="timeline-text">Strategy</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-number">03</span>
+              <span class="timeline-text">Development</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-number">04</span>
+              <span class="timeline-text">Launch</span>
+            </div>
+          </div>
+
+          <a href="#contact" class="cta-button">Start Your Project</a>
+        </div>
       </section>
 
       <section id="about" class="about">
-        <h2>ABOUT</h2>
-        <div class="about-content">
-          <div class="about-image">
-            <img
-              src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              alt="Digital Landscapes Founder" />
-          </div>
-          <div class="about-text">
-            <h3>MEET THE FOUNDER</h3>
-            <p>
-              With over a decade of experience in digital product development, I've helped businesses of all sizes
-              transform their digital presence and achieve remarkable growth.
-            </p>
-            <p>
-              My background spans enterprise-level website development, mobile application design, and implementing AI
-              solutions that drive real business results.
-            </p>
-            <p>
-              I believe that exceptional digital experiences begin with understanding your unique business challenges
-              and goals. That's why every project starts with a thorough consultation to ensure we're building exactly
-              what you need.
-            </p>
-            <div class="social-links">
-              <a href="https://linkedin.com" class="social-link" target="_blank" aria-label="LinkedIn"
-                ><i class="fab fa-linkedin-in"></i
-              ></a>
-              <a href="https://twitter.com" class="social-link" target="_blank" aria-label="Twitter"
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <a href="https://github.com" class="social-link" target="_blank" aria-label="GitHub"
-                ><i class="fab fa-github"></i
-              ></a>
+        <div class="container">
+          <div class="about-content">
+            <div class="about-image">
+              <img
+                src="https://static.licdn.com/aero-v1/sc/h/9c8pery4andzj6ohjkjp54ma2"
+                alt="Digital Landscapes Founder" />
+              <div class="tech-badge">10+ Years</div>
+              <div class="tech-badge">Full-Stack</div>
+              <div class="tech-badge">AI Specialist</div>
+            </div>
+
+            <div class="about-text">
+              <h3>Shalom R.</h3>
+              <div class="about-bio">
+                <p>
+                  With over a decade of experience in full-stack development and AI integration, I've helped businesses
+                  of all sizes transform their digital presence. My approach combines technical expertise with strategic
+                  thinking to create solutions that not only look great but drive real business results.
+                </p>
+                <p>
+                  My mission is to make cutting-edge technology accessible to businesses that want to stand out in the
+                  digital landscape. Whether you're looking to build a new website, develop a mobile app, or implement
+                  AI solutions, I'm here to help you navigate the process with confidence.
+                </p>
+              </div>
+
+              <div class="tech-stack">
+                <span class="tech-item">React</span>
+                <span class="tech-item">Node.js</span>
+                <span class="tech-item">TensorFlow</span>
+                <span class="tech-item">AWS</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer>
-      <div class="footer-content">
-        <div class="footer-column">
-          <h4>DIGITAL LANDSCAPES</h4>
-          <p>Navigate the digital world with confidence. Expert solutions tailored to your business needs.</p>
-          <div class="social-links">
-            <a href="https://linkedin.com" class="social-link" target="_blank" aria-label="LinkedIn"
-              ><i class="fab fa-linkedin-in"></i
-            ></a>
-            <a href="https://twitter.com" class="social-link" target="_blank" aria-label="Twitter"
-              ><i class="fab fa-twitter"></i
-            ></a>
-            <a href="https://github.com" class="social-link" target="_blank" aria-label="GitHub"
-              ><i class="fab fa-github"></i
-            ></a>
+    <footer id="contact">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h4>Digital Landscapes</h4>
+            <p>Navigate the digital world with confidence. Expert solutions tailored to your business needs.</p>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/shalomr" class="social-link" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <!-- <a href="https://twitter.com" class="social-link" target="_blank" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+              </a> -->
+              <a href="https://shalomthegreat.github.com" class="social-link" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#services">Custom Website Development</a></li>
+              <li><a href="#services">Mobile App Development</a></li>
+              <li><a href="#services">AI-Powered Solutions</a></li>
+              <li><a href="#services">Consultation & Strategy</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="mailto:info@digitallandscapes.com">info@digitallandscapes.com</a></li>
+              <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
+              <li>123 Digital Avenue, Tech City</li>
+            </ul>
           </div>
         </div>
-        <div class="footer-column">
-          <h4>SERVICES</h4>
-          <ul>
-            <li><a href="#services">Custom Website Development</a></li>
-            <li><a href="#services">Mobile App Development</a></li>
-            <li><a href="#services">AI-Powered Solutions</a></li>
-            <li><a href="#services">Consultation & Strategy</a></li>
-          </ul>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Digital Landscapes. All rights reserved.</p>
         </div>
-        <div class="footer-column">
-          <h4>CONTACT</h4>
-          <ul>
-            <li><a href="mailto:info@digitallandscapes.com">info@digitallandscapes.com</a></li>
-            <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
-            <li>123 Digital Avenue, Tech City</li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Digital Landscapes. All rights reserved.</p>
       </div>
     </footer>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        let vantaEffect = VANTA.DOTS({
-          el: "#wave-animation",
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.0,
-          minWidth: 200.0,
-          scale: 1.0,
-          scaleMobile: 1.0,
-          color: 0xffffff,
-          color2: 0x6e5b9e,
-          backgroundColor: 0x002025,
-          size: 3.8,
-          spacing: 30.0,
-          showLines: false,
-          speedLimit: 5.0,
-          quantity: 5.0
+        // Hero section interactive elements
+        const hero = document.querySelector(".hero");
+        const geometricOverlay = document.querySelector(".geometric-overlay");
+
+        // Mouse move effect for geometric overlay with whole pixel values
+        hero.addEventListener("mousemove", (e) => {
+          const x = Math.round((e.clientX / window.innerWidth) * 20);
+          const y = Math.round((e.clientY / window.innerHeight) * 20);
+
+          geometricOverlay.style.transform = `translate(${x}px, ${y}px)`;
         });
 
-        // Performance optimization for scrolling
-        let scrollTimeout;
-        let originalQuantity = 5.0;
-        let scrollQuantity = 2.0; // Reduced quality during scroll
-
-        window.addEventListener("scroll", function () {
-          // Reduce quality during scroll
-          if (vantaEffect && vantaEffect.setOptions) {
-            vantaEffect.setOptions({ quantity: scrollQuantity });
-          }
-
-          clearTimeout(scrollTimeout);
-          scrollTimeout = setTimeout(function () {
-            // Restore quality after scrolling stops
-            if (vantaEffect && vantaEffect.setOptions) {
-              vantaEffect.setOptions({ quantity: originalQuantity });
-            }
-          }, 200);
-
-          // Disable animation when it's not in viewport
-          const heroSection = document.querySelector(".hero");
-          const heroRect = heroSection.getBoundingClientRect();
-
-          if (heroRect.bottom < 0) {
-            if (vantaEffect) {
-              vantaEffect.destroy();
-              vantaEffect = null;
-            }
-          } else if (!vantaEffect) {
-            // Recreate effect when scrolling back to view
-            vantaEffect = VANTA.DOTS({
-              el: "#wave-animation",
-              mouseControls: true,
-              touchControls: true,
-              gyroControls: false,
-              minHeight: 200.0,
-              minWidth: 200.0,
-              scale: 1.0,
-              scaleMobile: 1.0,
-              color: 0xffffff,
-              color2: 0x6e5b9e,
-              backgroundColor: 0x002025,
-              size: 3.8,
-              spacing: 30.0,
-              showLines: false,
-              speedLimit: 5.0,
-              quantity: originalQuantity
+        // Animate service cards when they come into view using CSS classes
+        const serviceCards = document.querySelectorAll(".service-card");
+        const cardObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // Add visible class to trigger CSS animations
+                entry.target.classList.add("visible");
+                // Unobserve after adding class
+                cardObserver.unobserve(entry.target);
+              }
             });
-          }
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+        );
+
+        serviceCards.forEach((card) => {
+          cardObserver.observe(card);
+        });
+
+        // Optimize performance by using IntersectionObserver for sections
+        const sections = document.querySelectorAll("section");
+
+        const sectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                // Unobserve after adding class to improve performance
+                sectionObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        sections.forEach((section) => {
+          sectionObserver.observe(section);
         });
       });
     </script>

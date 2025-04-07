@@ -1,0 +1,14 @@
+# basic gitignore
+.DS_Store
+
+# node
+# node_modules
+# package-lock.json
+# package.json
+# yarn.lock
+
+# editor
+.idea
+.vscode
+
+# other
