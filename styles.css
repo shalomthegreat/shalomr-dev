@@ -164,7 +164,7 @@ section.visible {
 /* Hero Section */
 .hero {
   position: relative;
-  height: 100vh;
+  height: 80vh;
   min-height: 700px;
   display: flex;
   flex-direction: column;
@@ -564,6 +564,7 @@ section.visible {
   display: block;
   width: 100%;
   height: auto;
+  opacity: 0.8;
 }
 
 .tech-badge {
