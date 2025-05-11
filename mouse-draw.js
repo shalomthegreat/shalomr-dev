@@ -66,10 +66,10 @@ document.addEventListener("DOMContentLoaded", function () {
     lines.push(line);
   }
 
-  // Track mouse movement
+  // Track mouse movement (account for scroll offset)
   window.addEventListener("mousemove", function (event) {
-    mouse.x = event.clientX;
-    mouse.y = event.clientY;
+    mouse.x = event.clientX + window.scrollX;
+    mouse.y = event.clientY + window.scrollY;
   });
 
   // Animation loop
