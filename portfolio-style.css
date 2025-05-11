@@ -1,0 +1,172 @@
+/* Portfolio-specific styles */
+.portfolio-hero {
+  height: 50vh;
+  min-height: 400px;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.portfolio-item {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: white;
+  box-shadow: var(--card-shadow);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* This class is now only used for filtered items */
+.portfolio-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Override default section opacity from styles.css */
+/* section {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  } */
+
+/* Ensure all portfolio items are visible by default */
+/* .portfolio-item {
+    opacity: 1 !important;
+  } */
+
+.portfolio-item:hover {
+  transform: scale(1.03);
+  box-shadow: var(--hover-shadow);
+}
+
+.portfolio-thumbnail {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: all 0.5s ease;
+}
+
+/* Remove thumbnail hover effect */
+.portfolio-item:hover .portfolio-thumbnail {
+  transform: none;
+}
+
+.portfolio-content {
+  padding: 1.5rem;
+}
+
+.portfolio-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.portfolio-description {
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.portfolio-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #7c5cff 0%, #6c63ff 100%);
+  color: white;
+  border-radius: 30px;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.portfolio-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #6c63ff 0%, #7c5cff 50%, #8e78ff 100%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.portfolio-link:hover {
+  color: white;
+  box-shadow: 0 0 15px rgba(124, 92, 255, 0.5);
+}
+
+.portfolio-link:hover::before {
+  opacity: 1;
+}
+
+.portfolio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.portfolio-tag {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  background: rgba(124, 92, 255, 0.1);
+  color: var(--accent-purple, #7c5cff);
+}
+
+/* Interactive elements */
+.portfolio-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.filter-button {
+  padding: 0.75rem 1.5rem;
+  background: white;
+  border: none;
+  border-radius: 30px;
+  font-family: var(--primary-font);
+  font-weight: 600;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--card-shadow);
+}
+
+.filter-button:hover,
+.filter-button.active {
+  background: linear-gradient(135deg, #00cec9 0%, #4ecdc4 100%);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Hover effect for portfolio items */
+.portfolio-overlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}
