@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Digital Landscapes - Navigate the Digital World with Confidence</title>
 
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="portfolio-style.css" />
+
     <!-- Preload critical fonts for better performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,10 +26,6 @@
 
     <!-- Mouse trail effect script -->
     <script src="mouse-draw.js"></script>
-
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="portfolio-style.css" />
   </head>
   <body>
     <header class="hero">
@@ -45,12 +45,27 @@
       </nav>
 
       <div class="hero-content">
-        <h1>DIGITAL LANDSCAPES</h1>
-        <p class="tagline">Navigate the Digital World with Confidence.</p>
-        <p class="subtitle">Expertly designed websites, mobile apps, and AI-powered solutions to elevate your business.</p>
-        <a href="#services" class="hero-button" id="explore-services">Explore Services</a>
+        <h1 id="hero-title" class="neon-glow">DIGITAL LANDSCAPES</h1>
+        <div id="hero-rest" style="opacity: 0; transition: opacity 0.7s cubic-bezier(0.77, 0, 0.175, 1) 0.1s">
+          <p class="tagline">Navigate the Digital World with Confidence.</p>
+          <p class="subtitle">Expertly designed websites, mobile apps, and AI-powered solutions to elevate your business.</p>
+          <a href="#services" class="hero-button" id="explore-services">Explore Services</a>
+        </div>
       </div>
     </header>
+    <script>
+      // Hero vertical fold animation on load
+      window.addEventListener("DOMContentLoaded", function () {
+        const heroH1 = document.getElementById("hero-title");
+        const heroRest = document.getElementById("hero-rest");
+        if (heroH1 && heroRest) {
+          setTimeout(() => {
+            heroH1.classList.remove("neon-glow");
+            heroRest.style.opacity = 1;
+          }, 2500);
+        }
+      });
+    </script>
 
     <main>
       <section id="services" class="vision">
