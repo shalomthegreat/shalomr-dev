@@ -447,19 +447,16 @@
             button.classList.add("active");
             // Get filter value
             const filterValue = button.getAttribute("data-filter");
-            // Filter portfolio items
+
+            // Fade filtered-out items, highlight filtered-in items
             portfolioItems.forEach((item) => {
-              if (filterValue === "all" || item.getAttribute("data-category") === filterValue) {
-                item.style.display = "block";
-                // Add animation with delay
-                setTimeout(() => {
-                  item.classList.add("visible");
-                }, 100);
+              const matches = filterValue === "all" || item.getAttribute("data-category") === filterValue;
+              if (matches) {
+                item.classList.remove("faded");
+                item.classList.add("visible");
               } else {
                 item.classList.remove("visible");
-                setTimeout(() => {
-                  item.style.display = "none";
-                }, 300);
+                item.classList.add("faded");
               }
             });
           });

@@ -17,9 +17,23 @@
   overflow: hidden;
   background: white;
   box-shadow: var(--card-shadow);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  will-change: opacity;
+  z-index: 1;
+}
+
+/* Faded state for filtered-out cards */
+.portfolio-item.faded {
+  opacity: 0.35;
+}
+
+/* Visible (reset transforms) */
+.portfolio-item.visible {
+  opacity: 1;
+  transform: translateX(0) rotate(0deg) scale(1);
+  pointer-events: auto;
 }
 
 /* This class is now only used for filtered items */
@@ -163,6 +177,9 @@
   .portfolio-grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
+  .portfolio-filter {
+    display: none;
+  
 }
 
 @media (max-width: 480px) {
