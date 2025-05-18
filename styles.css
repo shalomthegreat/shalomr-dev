@@ -341,7 +341,7 @@ nav {
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(124, 92, 255, 0.5);
   color: white;
-  rotate: -5deg;
+  /* rotate: -5deg; */
 }
 
 /* Vision Section */
