@@ -54,7 +54,7 @@ html {
 
 /* Custom cursor using CSS cursor property */
 .hero {
-  cursor: url("purple-dot-cursor.svg") 5 5, auto;
+  cursor: url("../img/purple-dot-cursor.svg") 5 5, auto;
 }
 
 /* Make links and buttons show regular cursor on hover */
@@ -188,7 +188,7 @@ section.visible {
   left: -10%;
   width: 120%;
   height: 120%;
-  background-image: url("twilight.svg");
+  background-image: url("../img/twilight.svg");
   background-size: cover;
   z-index: -1;
   transition: transform 1s ease;
