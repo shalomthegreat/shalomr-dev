@@ -1,0 +1,303 @@
+<html>
+  <head>
+    <meta name="title" content="Recipe Cleaner - by Shalom The Great" />
+    <meta
+      name="description"
+      content="Save your favorite online recipe, WITH your custom edits. Format recipes for printing, without the ads and the clutter. Save recipes to your computer for offline viewing."
+    />
+    <meta
+      name="keywords"
+      content="Recipe Maker, Recipe Printer, Download Recipe, Recipe Cleaner, Format Recipe, Recipe Formatter, Print Your Own Recipe, Recipe Editor"
+    />
+    <meta name="author" content="Shalom Rasmussen" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Martel+Sans|Molle:400i|Raleway|Dancing+Script|Roboto&display=swap"
+    />
+    <style>
+      /* v1.4 */
+      html {
+        padding-top: 30px;
+      }
+      .fstandard {
+        font-family: "Raleway", sans-serif;
+      }
+      .fdancing {
+        font-family: "Dancing Script", cursive;
+      }
+      body {
+        font-family: "Martel Sans", sans-serif;
+      }
+      .mtitle {
+        text-transform: uppercase;
+        color: #888;
+        font-size: smaller;
+        margin-right: 10px;
+      }
+      #dload button {
+        background: linear-gradient(blue, darkblue);
+        border-radius: 5px;
+        color: lightblue;
+      }
+      #save {
+        background: linear-gradient(green, darkgreen);
+        color: lightgray;
+      }
+      hr {
+        margin: 2.5rem 0;
+      }
+      .text p {
+        margin-bottom: 15px;
+      }
+      #instructions {
+        list-style-type: none;
+        counter-reset: item;
+        margin-bottom: 3rem;
+      }
+      li {
+        margin-bottom: 2rem;
+        padding-left: 50px;
+        position: relative;
+      }
+      #instructions li:before {
+        counter-increment: item;
+        content: counter(item);
+        padding: 3px 10px 1px 10px;
+        font-size: large;
+        font-weight: 700;
+        border-radius: 50%;
+        border: 1px solid #999;
+        color: #666;
+        position: absolute;
+        top: calc(50% - 18px);
+        left: 0px;
+        line-height: 25px;
+      }
+      #instructions li:after {
+        content: " ";
+        display: block;
+        clear: both;
+      }
+      textarea {
+        min-height: 10px;
+      }
+      .seven textarea {
+        width: 100%;
+      }
+      .field {
+        display: none;
+        height: 100px;
+      }
+      .text:hover,
+      .edit:hover {
+        border: 1px solid orange;
+        border-radius: 3px;
+      }
+      .modify {
+        font-size: small;
+        margin-left: 30px;
+        color: #e0b282;
+        cursor: pointer;
+      }
+      #credit {
+        font-size: small;
+        color: #666;
+        margin-top: 40px;
+        float: right;
+      }
+      #credit:before {
+        content: "recipe by | ";
+      }
+      #credit:after {
+        content: "created at | shalomr.dev/recipe";
+        margin-left: 50px;
+      }
+      @media print {
+        body,
+        #instructions li:before {
+          font-size: 110%;
+        }
+        #credits {
+          font-size: 80%;
+        }
+        hr {
+          margin: 2rem;
+        }
+      }
+      @media print {
+        #actions,
+        .modify {
+          display: none;
+        }
+      }
+      @media print {
+        #credit {
+          position: fixed;
+          bottom: 30px;
+        }
+        .mtitle {
+          color: #dc975b;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <span id="actions" style="float: right">
+          <button id="save" onclick="presave();">Save</button>
+          <span id="dload" style="display: none">
+            <input type="text" id="dname" placeholder="File Name" />
+            <button onclick="saveme($('#dname').val())">Download</button>
+          </span>
+          <button id="print" onclick="window.print();return false;">
+            Print
+          </button>
+        </span>
+        <h3 class="fdancing edit">Recipe Title</h3>
+        <hr />
+      </div>
+      <div class="row" style="text-align: center">
+        <div class="three columns">
+          <span class="mtitle">Prep</span>
+          <span id="prep" class="edit">40 mins</span>
+        </div>
+        <div class="three columns">
+          <span class="mtitle edit">Bake</span>
+          <span id="bake" class="edit">1 hr</span>
+        </div>
+        <div class="three columns">
+          <span class="mtitle">Total</span>
+          <span id="total" class="edit">1 hr 40 mins</span>
+        </div>
+        <div class="three columns">
+          <span class="mtitle">Yield</span>
+          <span id="yield" class="edit">1 Pie</span>
+        </div>
+      </div>
+      <hr />
+      <div class="row" style="margin: 0 25px; margin-top: 40px">
+        <div id="items" class="five columns">
+          <h5>
+            Ingredients
+            <span class="modify" onclick="addSection()">+ add section</span>
+          </h5>
+          <p class="mtitle edit">Wet</p>
+          <div class="set">
+            <div class="text"></div>
+            <textarea class="field">
+1/2 cup milk
+2 tsp vanilla extract
+            </textarea>
+            <button type="button">wet ingredients</button>
+          </div>
+          <p class="mtitle edit" style="margin-top: 25px">Dry</p>
+          <div class="set">
+            <div class="text"></div>
+            <textarea class="field">2 cups almond flour</textarea>
+            <button type="button">dry ingredients</button>
+          </div>
+        </div>
+        <div class="seven columns">
+          <h5>
+            Instructions
+            <span id="noteb" class="modify" onclick="addNote()"
+              >+ add note</span
+            >
+          </h5>
+          <div class="set">
+            <ol class="text" id="instructions">
+              <li>Preheat oven to 350&#176;</li>
+              <li>Mix ingredients</li>
+              <li>Bake for 30 mins</li>
+            </ol>
+            <textarea class="field">Preheat oven to 350&#176;</textarea>
+          </div>
+          <div id="note" class="set" style="display: none">
+            <p class="text">NOTE: Important info here...</p>
+            <textarea class="field">NOTE: </textarea>
+          </div>
+          <div class="set" style="font-size: small; color: #999">
+            <div class="text" id="credits">
+              Credits -
+              https://www.kingarthurflour.com/recipes/banana-bread-recipe
+            </div>
+            <textarea class="field">Credits - </textarea>
+          </div>
+        </div>
+      </div>
+      <span id="credit" class="edit">Shalom R</span>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+      // v1.3
+      $(document)
+        .on("click", ".set button, .text", function () {
+          $(this).siblings(".field").show().focus();
+          $(this).parent().children("button, .text").hide();
+        })
+        .delegate("textarea", "blur", function () {
+          $(this).html($(this).val());
+          $(this).hide();
+          let lines = $(this).val().split("\n");
+          var text = "";
+          var isOL = $(this).siblings("ol").is(":hidden");
+          $.each(lines, function () {
+            if (isOL) text = text + "<li>" + this + "</li>";
+            else text = text + "<p>" + this + "</p>";
+          });
+          $(this).prev(".text").html(text).show();
+        });
+      $("body")
+        .on("click", ".edit", function () {
+          if ($(this).find("textarea").length < 1)
+            $(this).wrapInner("<textarea/>").find("textarea").focus();
+          else return;
+        })
+        .delegate(".edit textarea", "blur", function () {
+          $(this).parent().text(this.value);
+        });
+      function presave() {
+        $("#save").hide();
+        $("#dload").show();
+        $("#dname").val($("h3").text().replace(/\s/g, "")).focus();
+      }
+      function addSection() {
+        if (
+          $("#items .mtitle").length >= 4 &&
+          !confirm("Are you sure you want to add another section?")
+        )
+          return;
+        $("#items")
+          .append(`<p class="mtitle edit" style="margin-top:25px;">Seasonings</p>
+                    <div class="set">
+                        <div class="text"></div>
+                        <textarea class="field">1t Salt</textarea>
+                        <button type="button">dry ingredients</button>
+                    </div>`);
+      }
+      function addNote() {
+        $("#note").toggle();
+      }
+      function saveme(name) {
+        if (name.trim() == "") name = $("h3").text().replace(/\s/g, "");
+        if (name.trim() == "") name = "myrecipe";
+        var htmlContent = [$("html").html()];
+        var bl = new Blob(htmlContent, { type: "text/html" });
+        //window.save(bl, name + ".html");
+        var url = window.URL.createObjectURL(bl);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = name + ".html";
+        a.click();
+      }
+    </script>
+  </body>
+</html>
